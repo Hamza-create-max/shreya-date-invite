@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff719a" />
+    <title>A little date idea for Shreya</title>
+    <style>
+      :root {
+        --ink: #4b2640;
+        --pink: #ff5f91;
+        --pink-dark: #e84376;
+        --cream: #fff9f4;
+        --lavender: #eadcff;
+        --shadow: 0 18px 45px rgba(128, 54, 91, 0.18);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100svh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        background:
+          radial-gradient(circle at 12% 16%, #ffe2ed 0 7%, transparent 7.4%),
+          radial-gradient(circle at 86% 82%, #e7dcff 0 9%, transparent 9.4%),
+          linear-gradient(135deg, #fff5f7, #fff9ef 52%, #f3ebff);
+      }
+
+      .heart {
+        position: fixed;
+        z-index: 0;
+        opacity: 0.55;
+        color: #ff91b0;
+        font-size: clamp(18px, 3vw, 32px);
+        animation: float 7s ease-in-out infinite;
+        user-select: none;
+      }
+      .heart:nth-child(1) { left: 8%; top: 13%; animation-delay: -1.5s; }
+      .heart:nth-child(2) { right: 9%; top: 18%; animation-delay: -4s; }
+      .heart:nth-child(3) { left: 13%; bottom: 10%; animation-delay: -5s; }
+      .heart:nth-child(4) { right: 14%; bottom: 12%; animation-delay: -2.3s; }
+      @keyframes float {
+        50% { transform: translateY(-16px) rotate(8deg); }
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        width: min(92vw, 580px);
+        padding: 18px;
+      }
+      .card {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(34px, 7vw, 58px) clamp(24px, 7vw, 52px) 34px;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.85);
+        border-radius: 32px;
+        background: rgba(255,255,255,0.72);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        width: 125px;
+        height: 125px;
+        top: -52px;
+        right: -40px;
+        border-radius: 50%;
+        background: #ffd4e2;
+        opacity: 0.55;
+      }
+      .eyebrow {
+        margin: 0 0 13px;
+        font-family: ui-rounded, "Trebuchet MS", sans-serif;
+        color: var(--pink-dark);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .flower { font-size: 2.3rem; margin: 0 0 8px; animation: sway 2.8s ease-in-out infinite; }
+      @keyframes sway { 50% { transform: rotate(8deg) scale(1.08); } }
+      h1 { margin: 0; font-size: clamp(2.25rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.06em; }
+      .lead { margin: 22px auto 15px; max-width: 430px; font-size: clamp(1.05rem, 3.4vw, 1.2rem); line-height: 1.55; }
+      .plan {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        margin: 8px 0 26px;
+        padding: 10px 15px;
+        border-radius: 999px;
+        color: #70425c;
+        font-family: ui-rounded, "Trebuchet MS", sans-serif;
+        font-size: 0.92rem;
+        background: #fff0f5;
+      }
+      .question { margin: 0 0 19px; font-size: 1.35rem; font-weight: bold; }
+      .buttons { position: relative; display: flex; justify-content: center; align-items: center; gap: 14px; min-height: 62px; }
+      .buttons.growing { flex-direction: column; padding-top: 9px; }
+      .buttons.dodging { align-items: flex-start; min-height: 130px; padding-top: 4px; }
+      button {
+        min-height: 49px;
+        padding: 0 24px;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        font: 800 1rem/1 ui-rounded, "Trebuchet MS", sans-serif;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+      button:focus-visible { outline: 3px solid #704cdd; outline-offset: 4px; }
+      #yes {
+        color: white;
+        background: linear-gradient(135deg, #ff6e9b, #ec4e7c);
+        box-shadow: 0 9px 18px rgba(230, 65, 118, 0.28);
+      }
+      #yes:hover { box-shadow: 0 13px 23px rgba(230, 65, 118, 0.34); }
+      #no { color: #6d5362; background: #f0e8ed; }
+      #no:hover { background: #e9dfe5; }
+      #no.dodged { position: absolute; transition: left 260ms ease, top 260ms ease, background 180ms ease; }
+      .note { min-height: 24px; margin: 19px 0 0; color: #875b71; font-family: ui-rounded, "Trebuchet MS", sans-serif; font-size: 0.89rem; }
+      .tiny { margin: 15px 0 0; color: #9a7889; font: 0.76rem/1.4 ui-rounded, "Trebuchet MS", sans-serif; }
+      .hidden { display: none; }
+      #reply {
+        margin: 22px auto 0;
+        padding: 16px;
+        border-radius: 18px;
+        background: #fff0f5;
+        font-family: ui-rounded, "Trebuchet MS", sans-serif;
+      }
+      #reply p { margin: 0 0 12px; line-height: 1.45; }
+      #copy { min-height: 39px; color: #fff; background: #704cdd; font-size: 0.86rem; }
+      .confetti { position: fixed; z-index: 5; top: -20px; width: 10px; height: 16px; border-radius: 3px; pointer-events: none; animation: fall 2.6s linear forwards; }
+      @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+      @media (max-width: 380px) { .card { padding: 28px 18px; } .buttons { gap: 9px; } button { padding: 0 17px; } }
+    </style>
+  </head>
+  <body>
+    <span class="heart">♥</span><span class="heart">✦</span><span class="heart">♥</span><span class="heart">✦</span>
+    <main>
+      <section class="card" aria-live="polite">
+        <p class="eyebrow">a tiny invitation, just for you</p>
+        <div class="flower" aria-hidden="true">🌷</div>
+        <h1>Shreya,</h1>
+        <p class="lead">I think you are wonderful, and I would really love to spend some unhurried, happy time with you.</p>
+        <div class="plan">☕ coffee &nbsp;•&nbsp; ✨ a little walk &nbsp;•&nbsp; 🍰 something sweet</div>
+        <p class="question" id="question">Would you like to go on a date with me?</p>
+        <div class="buttons" id="buttons">
+          <button id="yes" type="button">Yes, I’d love to! 💗</button>
+          <button id="no" type="button">Not this time</button>
+        </div>
+        <p class="note" id="note">No pressure — your answer matters most.</p>
+        <div id="reply" class="hidden">
+          <p><strong>Yay! You just made someone very happy. ✨</strong><br />Send this back whenever you’re ready:</p>
+          <button id="copy" type="button">Copy my cute “yes” reply</button>
+        </div>
+        <p class="tiny">Made with a little courage and a lot of good vibes.</p>
+      </section>
+    </main>
+    <script>
+      const yes = document.querySelector('#yes');
+      const no = document.querySelector('#no');
+      const note = document.querySelector('#note');
+      const question = document.querySelector('#question');
+      const buttons = document.querySelector('#buttons');
+      const reply = document.querySelector('#reply');
+      const copy = document.querySelector('#copy');
+      let noCount = 0;
+      let noDodged = false;
+      const noMessages = [
+        'That’s completely okay — thank you for being honest. 🌷',
+        'No worries at all. The invitation comes with zero pressure. ✨',
+        'Still no? I appreciate the clear answer. Wishing you a lovely day! 💛'
+      ];
+
+      no.addEventListener('click', () => {
+        noCount += 1;
+        const scale = Math.min(1 + noCount * 0.13, 1.4);
+        buttons.classList.add('growing');
+        yes.style.transform = `scale(${scale})`;
+        note.textContent = noMessages[Math.min(noCount - 1, noMessages.length - 1)];
+        if (noCount === 1) no.textContent = 'Maybe another time';
+        if (noCount === 2) no.textContent = 'I’m sure, thank you';
+        if (noCount >= 3) {
+          no.textContent = 'Close this invitation';
+          yes.style.transform = 'scale(1.4)';
+        }
+      });
+
+      // A single little “shy” dodge is playful without taking away the answer.
+      no.addEventListener('pointerenter', () => {
+        if (noDodged || !window.matchMedia('(hover: hover)').matches) return;
+        noDodged = true;
+        buttons.classList.add('dodging');
+        no.classList.add('dodged');
+        const safeLeft = Math.max(8, buttons.clientWidth - no.offsetWidth - 8);
+        no.style.left = `${8 + Math.random() * Math.max(0, safeLeft - 8)}px`;
+        no.style.top = '70px';
+        note.textContent = 'Oops — a tiny shy dodge. It is still a real choice, promise. 🌷';
+      });
+
+      yes.addEventListener('click', () => {
+        question.textContent = 'It’s a date! 💐';
+        buttons.classList.add('hidden');
+        note.textContent = 'I cannot wait to make a sweet little memory together.';
+        reply.classList.remove('hidden');
+        celebrate();
+      });
+
+      copy.addEventListener('click', async () => {
+        const message = 'I’d love to go on a date with you! 💗 Let’s pick a day.';
+        try {
+          await navigator.clipboard.writeText(message);
+          copy.textContent = 'Copied! Send it back whenever you’re ready 💌';
+        } catch {
+          copy.textContent = 'Reply: “I’d love to go on a date with you! 💗”';
+        }
+      });
+
+      function celebrate() {
+        const colors = ['#ff6596', '#ffd466', '#8666df', '#70cbb8', '#ff9ab8'];
+        for (let i = 0; i < 80; i++) {
+          const piece = document.createElement('i');
+          piece.className = 'confetti';
+          piece.style.left = `${Math.random() * 100}vw`;
+          piece.style.background = colors[i % colors.length];
+          piece.style.animationDelay = `${Math.random() * 0.6}s`;
+          piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+          document.body.appendChild(piece);
+          piece.addEventListener('animationend', () => piece.remove());
+        }
+      }
+    </script>
+  </body>
+</html>
